@@ -50,7 +50,6 @@
     <Compile Include="CommandHelper.cs" />
     <Compile Include="ObservableClass.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="RelayCommand.cs" />
     <Compile Include="ViewModel.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

@@ -120,7 +120,7 @@ namespace Innouvous.Utils
 
         public string Title { get; private set; }
 
-        private event RoutedEventHandler CloseAction;
+        public event RoutedEventHandler CloseAction;
 
         public RoutedEventHandler GetCloseAction()
         {
