@@ -19,22 +19,11 @@ namespace Innouvous.Utils
         public static void AddExtension(SaveFileDialog dialog, string name, string extension)
         {
             dialog.Filter = AddExtension(dialog.Filter, name, extension);
-            /*
-            CheckValues(name, extension);
+        }
 
-            extension = extension.ToLower();
-
-            var values = GetFiltersFromString(dialog.Filter);
-
-            if (values.ContainsKey(extension))
-                return;
-            else
-            {
-                values.Add(extension, name);
-
-                dialog.Filter = ToFilter(values);
-            }
-            */
+        public static System.Windows.Forms.FolderBrowserDialog CreateFolderBrowser()
+        {
+            return new System.Windows.Forms.FolderBrowserDialog();
         }
 
         private static string AddExtension(string existingFilterString, string name, string extension)

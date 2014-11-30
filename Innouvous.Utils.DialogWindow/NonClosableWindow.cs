@@ -4,12 +4,12 @@ using System.Linq;
 using System.Text;
 using System.Windows;
 
-namespace Innouvous.Utils
+namespace Innouvous.Utils.DialogWindow
 {
     /// <summary>
     /// Adds functionality to disable the X button on the Window
     /// </summary>
-    public class DialogWindow : Window
+    public class NonClosableWindow : Window
     {
         private bool shouldClose = false;
 

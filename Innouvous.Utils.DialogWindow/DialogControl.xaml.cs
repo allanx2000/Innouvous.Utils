@@ -12,7 +12,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Innouvous.Utils
+namespace Innouvous.Utils.DialogWindow
 {
     
     public partial class DialogControl : UserControl
@@ -79,7 +79,8 @@ namespace Innouvous.Utils
 
         private void CloseButton_Click(object sender, RoutedEventArgs e)
         {
-            if (options.SelectedMode == DialogControlOptions.Mode.DataInput)
+            
+            if (options != null && options.SelectedMode == DialogControlOptions.Mode.DataInput)
             {
                 Dictionary<string, string> values = new Dictionary<string, string>();
 
