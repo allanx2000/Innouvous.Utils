@@ -7,6 +7,9 @@ using System.Windows.Controls;
 
 namespace Innouvous.Utils.DialogWindow.Windows
 {
+    /// <summary>
+    /// Creates Components for the DialogControl
+    /// </summary>
     public class ComponentFactory
     {
         public enum Components
@@ -19,19 +22,25 @@ namespace Innouvous.Utils.DialogWindow.Windows
             DateTimePicker
         }
 
-        public static IValueComponent MakeComponent(ComponentArgs options)
+        public static ValueComponent MakeComponent(ComponentArgs options)
         {
+            ValueComponent component;
+
             switch (options.ComponentType)
             {
                 case Components.TextBox:
-                    return new TextBoxComponent(options);
+                    component = new TextBoxComponent(options);
+                    break;
                 case Components.SaveFileSelector:
                 case Components.OpenFileSelector:
                 case Components.FolderSelector:
-                    return new PathSelectComponent(options);
+                    component = new PathSelectComponent(options);
+                    break;
                 default:
                     throw new Exception("Component not found");
             }
+
+            return component;
         }
     }
 }

@@ -14,66 +14,44 @@ using System.Windows.Shapes;
 
 namespace Innouvous.Utils.DialogWindow.Windows.Components
 {
-    public partial class TextBoxComponent : UserControl, IValueComponent
+    public partial class TextBoxComponent : ValueComponent
     {
-        #region Component Stuff
-        private ValueComponent component;
 
-        public string FieldName
+        public const string MAX_LENGTH = "MaxLength";
+
+
+        public TextBoxComponent(ComponentArgs args) : base(args)
         {
-            get { return component.FieldName; }
-        }
-
-        public string DisplayName
-        {
-            get { return component.DisplayName; }
-        }
-
-        public string ComponentType
-        {
-            get { return component.ComponentType.ToString(); }
-        }
-
-        public ComponentArgs Options
-        {
-            get { return component.Options; }
-        }
-
-        public object Data
-        {
-            get
-            {
-                return component.Data;
-            }
-        }
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public void RaisePropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(name));
-            }
-        }
-        #endregion
-
-        public TextBoxComponent(ComponentArgs args)
-        {
-            component = new ValueComponent(args);
+            this.DataContext = this;
 
             InitializeComponent();
+
+            var maxLength = args.GetCustomParameter(MAX_LENGTH);
+            if (maxLength != null)
+            {
+                int l = (int)maxLength;
+
+                CalculateAndSetTextBoxSize(l);
+            }
         }
 
-        public string Value
+        private void CalculateAndSetTextBoxSize(int length)
+        {
+
+            ValueTextBox.Width = length * ValueTextBox.FontSize;
+            ValueTextBox.MaxLength = length;
+            ValueTextBox.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+        }
+
+        public object Value
         {
             get
             {
-                return (string)component.Data;
+                return Data;
             }
             set
             {
-                component.Data = value;
+                Data = value;
 
                 RaisePropertyChanged("Value");
             }

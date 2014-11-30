@@ -13,7 +13,7 @@ namespace Innouvous.Utils.DialogWindow
     {
         private bool shouldClose = false;
 
-        protected void CanClose()
+        public void CanClose()
         {
             shouldClose = true;
         }

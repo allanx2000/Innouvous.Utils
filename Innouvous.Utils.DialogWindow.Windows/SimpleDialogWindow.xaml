@@ -1,7 +1,21 @@
-﻿<local:NonClosableWindow x:Class="Innouvous.Utils.DialogWindow.Windows.SimpleDialogWindow"
+﻿<base:NonClosableWindow x:Class="Innouvous.Utils.DialogWindow.Windows.SimpleDialogWindow"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:local="clr-namespace:Innouvous.Utils.DialogWindow;assembly=Innouvous.Utils.DialogWindow"
+        xmlns:base="clr-namespace:Innouvous.Utils.DialogWindow;assembly=Innouvous.Utils.DialogWindow"
+        xmlns:local="clr-namespace:Innouvous.Utils.DialogWindow.Windows"
         Title="TestWindow" Height="300" Width="500">
-        <local:DialogControl x:Name="DialogControl" />
-</local:NonClosableWindow>
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+
+        <local:DialogControl Grid.Row="0" x:Name="DialogControl" />
+        <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal">
+            <Button Name="SaveButton" Visibility="{Binding SaveButtonVisibility}" Command="{Binding SaveCommand}">Save</Button>
+            <Button Name="CloseButton" Content="{Binding CloseText}" Command="{Binding CloseCommand}" />
+        </StackPanel>
+    </Grid>
+    
+    
+</base:NonClosableWindow>

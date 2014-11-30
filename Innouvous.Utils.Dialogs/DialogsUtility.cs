@@ -7,26 +7,32 @@ using System.Threading.Tasks;
 
 namespace Innouvous.Utils
 {
+    /// <summary>
+    /// Static utility class for creating Windows dialogs and some related utility functions
+    /// </summary>
     public class DialogsUtility
     {
-        private static void CheckValues(string name, string extension)
-        {
-            if (String.IsNullOrEmpty(name) || string.IsNullOrEmpty(extension))
-                throw new Exception("Name or extension is empty");
-            else if (!extension.Contains('.'))
-                throw new Exception("Extension should be in the form *.ext");
-        }
+        #region AddExtension
+
+        /// <summary>
+        /// Add an extension directly to the window's Filter parameter
+        /// </summary>
+        /// <param name="dialog"></param>
+        /// <param name="name">Display name</param>
+        /// <param name="extension">Extension in the form *.EXT</param>
         public static void AddExtension(SaveFileDialog dialog, string name, string extension)
         {
             dialog.Filter = AddExtension(dialog.Filter, name, extension);
         }
 
-        public static System.Windows.Forms.FolderBrowserDialog CreateFolderBrowser()
-        {
-            return new System.Windows.Forms.FolderBrowserDialog();
-        }
-
-        private static string AddExtension(string existingFilterString, string name, string extension)
+        /// <summary>
+        /// Returns the extension string usually used in a DialogWindow.Filter parameter
+        /// </summary>
+        /// <param name="existingFilterString">Existing filter string to append to, or ""</param>
+        /// <param name="name">Display name</param>
+        /// <param name="extension">Extension in the form *.EXT</param>
+        /// <returns></returns>
+        public static string AddExtension(string existingFilterString, string name, string extension)
         {
             CheckValues(name, extension);
 
@@ -44,14 +50,39 @@ namespace Innouvous.Utils
             }
         }
 
+        /// <summary>
+        /// Add an extension directly to the window's Filter parameter
+        /// </summary>
+        /// <param name="dialog"></param>
+        /// <param name="name">Display name</param>
+        /// <param name="extension">Extension in the form *.EXT</param>
         public static void AddExtension(OpenFileDialog dialog, string name, string extension)
         {
             dialog.Filter = AddExtension(dialog.Filter, name, extension);
             
         }
 
+        /// <summary>
+        /// Checks the parameters to make sure they are valid
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="extension"></param>
+        private static void CheckValues(string name, string extension)
+        {
+            if (String.IsNullOrEmpty(name) || string.IsNullOrEmpty(extension))
+                throw new Exception("Name or extension is empty");
+            else if (!extension.Contains('.'))
+                throw new Exception("Extension should be in the form *.ext");
+        }
+
+        
         private const char FilterDelim = '|';
 
+        /// <summary>
+        /// Converts a list of filters in the form EXT, NAME to a Filter string
+        /// </summary>
+        /// <param name="values"></param>
+        /// <returns></returns>
         private static string ToFilter(Dictionary<string, string> values)
         {
             StringBuilder sb = new StringBuilder();
@@ -87,6 +118,18 @@ namespace Innouvous.Utils
                 return map;
         }
 
+        #endregion
+
+        #region Dialogs
+        /* Creates dialogs with sensible defaults
+         */
+
+        public static System.Windows.Forms.FolderBrowserDialog CreateFolderBrowser()
+        {
+            return new System.Windows.Forms.FolderBrowserDialog();
+        }
+        
+
         public static SaveFileDialog CreateSaveFileDialog(string title = "Save File", string initialDirectory = null, 
             bool addExtension = true, bool overwritePrompt= true, bool validateNames = true)
         {
@@ -114,5 +157,8 @@ namespace Innouvous.Utils
             
             return ofd;
         }
+
+        #endregion
+
     }
 }

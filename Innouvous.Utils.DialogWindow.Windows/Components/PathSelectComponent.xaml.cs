@@ -1,6 +1,7 @@
 ﻿using Innouvous.Utils.MVVM;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Windows;
@@ -18,62 +19,30 @@ namespace Innouvous.Utils.DialogWindow.Windows.Components
     /// <summary>
     /// Interaction logic for PathSelectComponent.xaml
     /// </summary>
-    public partial class PathSelectComponent : UserControl, IValueComponent
+    public partial class PathSelectComponent :  ValueComponent //UserControl, IValueComponent
     {
-        #region Component Stuff
-        private ValueComponent component;
+        public const string WINDOW_TITLE = "WindowTitle";
+        public const string EXTENSION = "Extension";
+        public const string CONFIRM_OVERWRITE = "ConfirmOverwrite";
 
-        public string FieldName
-        {
-            get { return component.FieldName; }
-        }
-
-        public string DisplayName
-        {
-            get { return component.DisplayName; }
-        }
-
-        public string ComponentType
-        {
-            get { return component.ComponentType.ToString(); }
-        }
-
-        public ComponentArgs Options
-        {
-            get { return component.Options; }
-        }
-
-        public object Data
-        {
-            get
-            {
-                return component.Data;
-            }
-        }
-
-        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
-
-        public void RaisePropertyChanged(string name)
-        {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged.Invoke(this, new System.ComponentModel.PropertyChangedEventArgs(name));
-            }
-        }
-        #endregion
-
+        
         public string Value
         {
             get
             {
-                return (string) component.Data;
+                return (string) Data;
             }
             set
             {
-                component.Data = value;
+                Data = value;
 
                 RaisePropertyChanged("Value");
             }
+        }
+
+        public static string MakeExtension(string name, string extension, string existingFilter = "")
+        {
+            return DialogsUtility.AddExtension(existingFilter, name, extension);
         }
 
         private static readonly List<ComponentFactory.Components> ValidTypes = new List<ComponentFactory.Components>() 
@@ -83,7 +52,7 @@ namespace Innouvous.Utils.DialogWindow.Windows.Components
             ComponentFactory.Components.SaveFileSelector,
         };
 
-        public PathSelectComponent(ComponentArgs args)
+        public PathSelectComponent(ComponentArgs args) : base(args)
         {
             //Validate Option
             if (!ValidTypes.Contains(args.ComponentType))
@@ -92,7 +61,9 @@ namespace Innouvous.Utils.DialogWindow.Windows.Components
             }
 
 
-            component = new ValueComponent(args);
+            //component = new ValueComponent(args);
+            
+            this.DataContext = this;
 
             InitializeComponent();
         }
@@ -110,6 +81,12 @@ namespace Innouvous.Utils.DialogWindow.Windows.Components
                         case ComponentFactory.Components.FolderSelector:
                             browseCommand = new CommandHelper(BrowseForFolder);
                             break;
+                        case ComponentFactory.Components.SaveFileSelector:
+                            browseCommand = new CommandHelper(BrowseForSaveFile);
+                            break;
+                        case ComponentFactory.Components.OpenFileSelector:
+                            browseCommand = new CommandHelper(BrowseForLoadFile);
+                            break;
                     }
                 }
 
@@ -117,9 +94,61 @@ namespace Innouvous.Utils.DialogWindow.Windows.Components
             }
         }
 
+        private void BrowseForLoadFile()
+        {
+            var window = DialogsUtility.CreateOpenFileDialog();
+
+            var title = (string) Options.GetCustomParameter(WINDOW_TITLE);
+            if (title != null) window.Title = title;
+
+            window.Filter = (string)Options.GetCustomParameter(EXTENSION);
+
+            if (System.IO.Directory.Exists(Value))
+                window.InitialDirectory = Value;
+            else if (System.IO.File.Exists(Value))
+            {
+                var file = new FileInfo(Value);
+                window.InitialDirectory = file.DirectoryName;
+                window.FileName = file.Name;
+            }
+
+            window.ShowDialog();
+        }
+
+        private void BrowseForSaveFile()
+        {
+            var window = DialogsUtility.CreateSaveFileDialog();
+
+            var title = Options.GetCustomParameter(WINDOW_TITLE);
+            if (title != null) window.Title = (string) title;
+            
+            object confirmOverwrite = Options.GetCustomParameter(CONFIRM_OVERWRITE);
+
+            if (confirmOverwrite != null)
+                window.OverwritePrompt = (bool) confirmOverwrite;
+
+            window.Filter = (string) Options.GetCustomParameter(EXTENSION);
+
+            if (System.IO.Directory.Exists(Value))
+                window.InitialDirectory = Value;
+            else if (System.IO.File.Exists(Value))
+            {
+                var file = new FileInfo(Value);
+                window.InitialDirectory = file.DirectoryName;
+                window.FileName = file.Name;
+            }
+
+            window.ShowDialog();
+        }
+
         private void BrowseForFolder()
         {
             var window = DialogsUtility.CreateFolderBrowser();
+
+            if (System.IO.Directory.Exists(Value))
+                window.SelectedPath = Value;
+
+            window.ShowDialog();
 
             if (!String.IsNullOrEmpty(window.SelectedPath))
             {

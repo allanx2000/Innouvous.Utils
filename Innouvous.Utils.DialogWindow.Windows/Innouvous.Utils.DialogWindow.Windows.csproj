@@ -56,6 +56,9 @@
   <ItemGroup>
     <Compile Include="ComponentArgs.cs" />
     <Compile Include="ComponentFactory.cs" />
+    <Compile Include="Components\ComboBoxComponent.xaml.cs">
+      <DependentUpon>ComboBoxComponent.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Components\PathSelectComponent.xaml.cs">
       <DependentUpon>PathSelectComponent.xaml</DependentUpon>
     </Compile>
@@ -65,13 +68,15 @@
     <Compile Include="DialogControl.xaml.cs">
       <DependentUpon>DialogControl.xaml</DependentUpon>
     </Compile>
-    <Compile Include="OptionsWindow.xaml.cs">
-      <DependentUpon>OptionsWindow.xaml</DependentUpon>
-    </Compile>
+    <Compile Include="DialogControlOptions.cs" />
     <Compile Include="SimpleDialogWindow.xaml.cs">
       <DependentUpon>SimpleDialogWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="ValueComponent.cs" />
+    <Page Include="Components\ComboBoxComponent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Components\PathSelectComponent.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -83,10 +88,6 @@
     <Page Include="DialogControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
-    </Page>
-    <Page Include="OptionsWindow.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="SimpleDialogWindow.xaml">
       <Generator>MSBuild:Compile</Generator>

@@ -12,13 +12,11 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Innouvous.Utils.DialogWindow
+namespace Innouvous.Utils.DialogWindow.Windows
 {
     
     public partial class DialogControl : UserControl
     {
-        public event RoutedEventHandler CloseClicked;
-
         public Dictionary<string, string> Values { get; private set; }
 
         private DialogControlOptions options;
@@ -32,8 +30,6 @@ namespace Innouvous.Utils.DialogWindow
         {
             this.options = options;
 
-            CloseClicked = options.GetCloseAction();
-
             switch (options.SelectedMode)
             {
                 case DialogControlOptions.Mode.DataInput:
@@ -44,22 +40,21 @@ namespace Innouvous.Utils.DialogWindow
 
                     int rowCounter = -1;
                     //Add the Rows
-                    foreach (string name in options.FieldNames)
+                    foreach (ComponentArgs field in options.Fields)
                     {
                         ContentGrid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
                         rowCounter++;
 
-                        Label nameLabel = new Label() { Content = name };
+                        Label nameLabel = new Label() { Content = field.DisplayName};
                         nameLabel.SetValue(Grid.RowProperty, rowCounter);
                         nameLabel.SetValue(Grid.ColumnProperty, 0);
 
-
-                        TextBox valueTextBox = new TextBox() { Tag = name };
-                        valueTextBox.SetValue(Grid.RowProperty, rowCounter);
-                        valueTextBox.SetValue(Grid.ColumnProperty, 1);
+                        UserControl component = ComponentFactory.MakeComponent(field) as UserControl;
+                        component.SetValue(Grid.RowProperty, rowCounter);
+                        component.SetValue(Grid.ColumnProperty, 1);
 
                         ContentGrid.Children.Add(nameLabel);
-                        ContentGrid.Children.Add(valueTextBox);
+                        ContentGrid.Children.Add(component);
                     }
 
                     break;
@@ -77,97 +72,29 @@ namespace Innouvous.Utils.DialogWindow
             }
         }
 
-        private void CloseButton_Click(object sender, RoutedEventArgs e)
+        public Dictionary<string, object> GetOptionsData()
         {
-            
             if (options != null && options.SelectedMode == DialogControlOptions.Mode.DataInput)
             {
-                Dictionary<string, string> values = new Dictionary<string, string>();
+                Dictionary<string, object> values = new Dictionary<string, object>();
 
                 foreach (object o in ContentGrid.Children)
                 {
-                    TextBox tb = o as TextBox;
+                    IValueComponent component = o as IValueComponent;
 
-                    if (tb != null)
+                    if (component != null)
                     {
-                        values.Add(tb.Tag.ToString(), tb.Text);
+                        values.Add(component.FieldName, component.Data);
+                        //values.Add(tb.Tag.ToString(), tb.Text);
                     }
                 }
 
-                options.SetReturnValues(values);
-
-            
+                return values;
             }
-
-            CloseClicked.Invoke(sender, e);
+            else return null;
         }
     }
 
 
-    public class DialogControlOptions
-    {
-        public enum Mode
-        {
-            TextBoxMessage,
-            DataInput
-        }
-
-        public Mode SelectedMode { get; private set; }
-
-        public string TextBoxMessageContents { get; private set; }
-        public bool TextBoxCanEdit { get; private set; }
-
-        public string InstructionsLabel { get; private set; }
-
-        public string Title { get; private set; }
-
-        public event RoutedEventHandler CloseAction;
-
-        public RoutedEventHandler GetCloseAction()
-        {
-            return CloseAction;
-        }
-
-        private DialogControlOptions()
-        {   
-        }
-
-        public List<string> FieldNames { get; private set; }
-
-        public static DialogControlOptions SetTextBoxMessageOptions(string title, string message, bool canEdit, RoutedEventHandler closeAction)
-        {
-            var opts = new DialogControlOptions()
-            {
-                 CloseAction = closeAction,
-                 Title = title,
-                 TextBoxMessageContents = message,
-                 SelectedMode = Mode.TextBoxMessage,
-                 TextBoxCanEdit = canEdit
-            };
-
-            return opts;
-        }
-
-        public static DialogControlOptions SetDataInputOptions(string title, string instructions, List<string> fields, RoutedEventHandler closeAction)
-        {
-            var opts = new DialogControlOptions()
-            {
-                CloseAction = closeAction,
-                Title = title,
-                InstructionsLabel = instructions,
-                SelectedMode = Mode.DataInput,
-                FieldNames = fields
-            };
-
-            return opts;
-        }
-
-
-        public Dictionary<string, string> ReturnValues {get; private set;}
-
-        public void SetReturnValues(Dictionary<string, string> values)
-        {
-            ReturnValues = values;
-        }
-    }
+    
 }

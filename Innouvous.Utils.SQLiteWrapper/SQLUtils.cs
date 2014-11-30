@@ -8,18 +8,22 @@ using System.Threading.Tasks;
 
 namespace Innouvous.Utils.Data
 {
+    /// <summary>
+    /// Utility class with SQL helper functions
+    /// </summary>
     public class SQLUtils
     {
+        //Cache SQL commands in memory
         private static Dictionary<string, string> sqlStatementDictionary = new Dictionary<string, string>();
 
         /// <summary>
-        /// 
+        /// Loads a query from a SQL template file from the file system
         /// </summary>
-        /// <param name="scriptsPath"></param>
-        /// <param name="fileName"></param>
+        /// <param name="scriptsPath">Template files directory</param>
+        /// <param name="fileName">Template file name</param>
         /// <param name="ext">Extension without .</param>
-        /// <param name="args"></param>
-        /// <returns></returns>
+        /// <param name="args">Values for each of the placeholders in the template</param>
+        /// <returns>A SQL query string</returns>
         public static string LoadCommandFromText(string scriptsPath, string fileName, string ext, params object[] args)
         {
             if (!sqlStatementDictionary.ContainsKey(fileName))
@@ -49,6 +53,11 @@ namespace Innouvous.Utils.Data
             return arg;
         }
 
+        /// <summary>
+        /// Get the last insert row ID
+        /// </summary>
+        /// <param name="client"></param>
+        /// <returns>Returns the ID or 0 if last query was not an insert</returns>
         public static int GetLastInsertRow(SQLiteClient client)
         {
             string command = "select last_insert_rowid()";
@@ -59,11 +68,18 @@ namespace Innouvous.Utils.Data
         }
 
         private const string DateTimeFormat = "yyyy-MM-dd HH:mm";
+        
+        /// <summary>
+        /// Converts dates to SQLite format
+        /// </summary>
+        /// <param name="dateTime"></param>
+        /// <returns>Date string for use in query construction</returns>
         public static string ToSQLDateTime(DateTime dateTime)
         {
             return dateTime.ToString(DateTimeFormat);
         }
 
+        //Doesn't seem to be used as queries return dates as DateTime object
         public static DateTime ToDateTime(string dateTimeString)
         {
             return DateTime.ParseExact(dateTimeString, DateTimeFormat, CultureInfo.InvariantCulture);

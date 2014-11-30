@@ -16,21 +16,16 @@ namespace Innouvous.Utils.DialogWindow.Windows
         object Data { get; }
     }
 
-    public class ValueComponent :  IValueComponent
+    //Base class for Component objects 
+    public abstract class ValueComponent : UserControl, IValueComponent
     {
         private ComponentArgs options;
-
-        //protected object val;
 
         public ValueComponent(ComponentArgs options)
         {
             this.options = options;
+            this.Data = options.InitialData;
         }
-
-        /*public void SetValue(object val)
-        {
-            this.val = val;
-        }*/
 
         public string FieldName
         {

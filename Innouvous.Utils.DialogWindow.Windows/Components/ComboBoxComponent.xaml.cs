@@ -9,16 +9,17 @@ using System.Windows.Documents;
 using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
+using System.Windows.Navigation;
 using System.Windows.Shapes;
 
-namespace Innouvous.Utils.DialogWindow.Windows
+namespace Innouvous.Utils.DialogWindow.Windows.Components
 {
     /// <summary>
-    /// Interaction logic for OptionsWindow.xaml
+    /// Interaction logic for ComboBoxComponent.xaml
     /// </summary>
-    public partial class OptionsWindow : Window
+    public partial class ComboBoxComponent : UserControl
     {
-        public OptionsWindow()
+        public ComboBoxComponent()
         {
             InitializeComponent();
         }

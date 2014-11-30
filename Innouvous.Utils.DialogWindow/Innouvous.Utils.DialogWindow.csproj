@@ -51,15 +51,6 @@
   <ItemGroup>
     <Compile Include="NonClosableWindow.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="DialogControl.xaml.cs">
-      <DependentUpon>DialogControl.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-  <ItemGroup>
-    <Page Include="DialogControl.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Innouvous.Utils.ResourceDictionaries\Innouvous.Utils.ResourceDictionaries.csproj">
