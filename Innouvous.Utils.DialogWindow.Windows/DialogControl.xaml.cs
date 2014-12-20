@@ -17,9 +17,11 @@ namespace Innouvous.Utils.DialogWindow.Windows
     
     public partial class DialogControl : UserControl
     {
+
         public Dictionary<string, string> Values { get; private set; }
 
         private DialogControlOptions options;
+        private const int DataInputControlHeight = 30;
 
         public DialogControl()
         {
@@ -29,6 +31,9 @@ namespace Innouvous.Utils.DialogWindow.Windows
         public void SetupControl(DialogControlOptions options)
         {
             this.options = options;
+
+            if (String.IsNullOrEmpty(options.InstructionsLabel))
+                InstructionsTextBlock.Visibility = System.Windows.Visibility.Collapsed;
 
             switch (options.SelectedMode)
             {
@@ -49,10 +54,23 @@ namespace Innouvous.Utils.DialogWindow.Windows
                         nameLabel.SetValue(Grid.RowProperty, rowCounter);
                         nameLabel.SetValue(Grid.ColumnProperty, 0);
 
-                        UserControl component = ComponentFactory.MakeComponent(field) as UserControl;
+                        if (options.BoldLabels)
+                        {
+                            nameLabel.FontWeight = FontWeights.Bold;
+                        }
+
+                        UserControl component;
+
+                        if (field.CustomComponent == null)
+                            component = ComponentFactory.MakeComponent(field) as UserControl;
+                        else
+                            component = field.CustomComponent;
+
                         component.SetValue(Grid.RowProperty, rowCounter);
                         component.SetValue(Grid.ColumnProperty, 1);
 
+                        component.Height = DataInputControlHeight;
+                        
                         ContentGrid.Children.Add(nameLabel);
                         ContentGrid.Children.Add(component);
                     }
@@ -92,6 +110,24 @@ namespace Innouvous.Utils.DialogWindow.Windows
                 return values;
             }
             else return null;
+        }
+
+        public bool SetFieldValue(string name, object value)
+        {
+            foreach (Control c in ContentGrid.Children)
+            {
+                var vc = c as IValueComponent;
+
+                if (vc != null && name == vc.FieldName)
+                {
+                    vc.SetData(value);
+
+                    return true;
+                }
+            }
+
+            return false;
+            //throw new Exception("Field Name not found: " + name);
         }
     }
 

@@ -19,7 +19,9 @@ namespace Innouvous.Utils.DialogWindow.Windows
             OpenFileSelector,
             SaveFileSelector,
             DatePicker,
-            DateTimePicker
+            DateTimePicker,
+            CheckBox,
+            ComboBox
         }
 
         public static ValueComponent MakeComponent(ComponentArgs options)
@@ -35,6 +37,16 @@ namespace Innouvous.Utils.DialogWindow.Windows
                 case Components.OpenFileSelector:
                 case Components.FolderSelector:
                     component = new PathSelectComponent(options);
+                    break;
+                case Components.DatePicker:
+                case Components.DateTimePicker:
+                    component = new DateTimeComponent(options);
+                    break;
+                case Components.ComboBox:
+                    component = new ComboBoxComponent(options);
+                    break;
+                case Components.CheckBox:
+                    component = new BooleanComponent(options);
                     break;
                 default:
                     throw new Exception("Component not found");

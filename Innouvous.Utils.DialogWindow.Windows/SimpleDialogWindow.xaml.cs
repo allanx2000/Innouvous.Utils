@@ -40,7 +40,7 @@ namespace Innouvous.Utils.DialogWindow.Windows
             viewmodel = new SimpleDialogViewModel(options, this);
             this.DataContext = viewmodel;
 
-            this.Title = options.Title;
+            //this.Title = options.Title;
             this.options = options;
 
             DialogControl.SetupControl(options);

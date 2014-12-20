@@ -20,25 +20,22 @@ namespace Innouvous.Utils.DialogWindow.Windows
 
         public Mode SelectedMode { get; private set; }
 
-        public string InstructionsLabel { get; private set; }
-
-        public string Title { get; private set; }
-
         private DialogControlOptions()
         {
         }
 
-
-        #region TextBoxMessage
         
-        public string TextBoxMessageContents { get; private set; }
-        public bool TextBoxCanEdit { get; private set; }
+        #region TextBoxMessage
 
-        public static DialogControlOptions SetTextBoxMessageOptions(string title, string message, bool canEdit, RoutedEventHandler closeAction)
+        public string TextBoxMessageContents { get; set; }
+        public bool TextBoxCanEdit { get; set; }
+
+
+        public static DialogControlOptions SetTextBoxMessageOptions(string message, bool canEdit)
         {
             var opts = new DialogControlOptions()
             {
-                Title = title,
+                //Title = title,
                 TextBoxMessageContents = message,
                 SelectedMode = Mode.TextBoxMessage,
                 TextBoxCanEdit = canEdit
@@ -50,14 +47,15 @@ namespace Innouvous.Utils.DialogWindow.Windows
         #endregion
 
         #region Data Input
+        
         public List<ComponentArgs> Fields { get; private set; }
+        public string InstructionsLabel { get; set; }
+        public bool BoldLabels { get; set; }
 
-        public static DialogControlOptions SetDataInputOptions(string title, string instructions, List<ComponentArgs> fields)
+        public static DialogControlOptions SetDataInputOptions(List<ComponentArgs> fields, string instructions = null)
         {
             var opts = new DialogControlOptions()
-            {
-                Title = title,
-                InstructionsLabel = instructions,
+            {   InstructionsLabel = instructions,
                 SelectedMode = Mode.DataInput,
                 Fields = fields
             };

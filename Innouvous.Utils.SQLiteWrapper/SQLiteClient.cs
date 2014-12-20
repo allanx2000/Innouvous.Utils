@@ -18,9 +18,7 @@ namespace Innouvous.Utils.Data
 
         private SQLiteConnection connection;
 
-        private DataSet ds = new DataSet();
-        private DataTable dt = new DataTable();
-
+        
         /// <summary>
         /// Create a SQLiteClient
         /// </summary>
@@ -77,6 +75,9 @@ namespace Innouvous.Utils.Data
             cmd.CommandText = sql;
 
             SQLiteDataAdapter da = new SQLiteDataAdapter(sql, connection);
+
+            DataSet ds = new DataSet();
+            DataTable dt = new DataTable();
 
             ds.Reset();
 

@@ -10,6 +10,8 @@ namespace Innouvous.Utils.DialogWindow.Windows
     /// </summary>
     public struct ComponentArgs
     {
+        public ValueComponent CustomComponent { get; set; }
+
         /// <summary>
         /// Initial value the component should have. User must ensure the object is compatible with the component
         /// </summary>

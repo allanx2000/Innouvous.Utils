@@ -16,32 +16,34 @@ namespace Innouvous.Utils.DialogWindow.Windows.Components
 {
     public partial class TextBoxComponent : ValueComponent
     {
+        public enum FieldType
+        {
+            Text,
+            Integer,
+            Double
+        }
+
 
         public const string MAX_LENGTH = "MaxLength";
+        public const string FIELD_TYPE = "FieldType";
+        
+        private FieldType type = FieldType.Text;
 
+        private Brush color;
 
-        public TextBoxComponent(ComponentArgs args) : base(args)
+        public Brush Color
         {
-            this.DataContext = this;
-
-            InitializeComponent();
-
-            var maxLength = args.GetCustomParameter(MAX_LENGTH);
-            if (maxLength != null)
+            get
             {
-                int l = (int)maxLength;
-
-                CalculateAndSetTextBoxSize(l);
+                return color;
+            }
+            private set
+            {
+                color = value;
+                RaisePropertyChanged("Color");
             }
         }
 
-        private void CalculateAndSetTextBoxSize(int length)
-        {
-
-            ValueTextBox.Width = length * ValueTextBox.FontSize;
-            ValueTextBox.MaxLength = length;
-            ValueTextBox.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
-        }
 
         public object Value
         {
@@ -51,10 +53,66 @@ namespace Innouvous.Utils.DialogWindow.Windows.Components
             }
             set
             {
-                Data = value;
+                if (IsValid(value))
+                {
+                    Data = value;
+                }
 
                 RaisePropertyChanged("Value");
             }
+        }
+
+
+        public TextBoxComponent(ComponentArgs args)
+            : base(args)
+        {
+            this.DataContext = this;
+
+            InitializeComponent();
+
+            //Max Length
+            var maxLength = args.GetCustomParameter(MAX_LENGTH);
+            if (maxLength != null)
+            {
+                int l = (int)maxLength;
+
+                CalculateAndSetTextBoxSize(l);
+            }
+
+            //Field Type
+            var type = args.GetCustomParameter(FIELD_TYPE);
+
+            if (type != null)
+                this.type = (FieldType)type;
+
+            //Set Data Field Name
+            base.SetDataFieldAlias("Value");
+        }
+
+
+        private void CalculateAndSetTextBoxSize(int length)
+        {
+            ValueTextBox.Width = length * ValueTextBox.FontSize;
+            ValueTextBox.MaxLength = length;
+            ValueTextBox.HorizontalAlignment = System.Windows.HorizontalAlignment.Left;
+        }
+
+        private bool IsValid(object value)
+        {
+            switch (type)
+            {
+                case FieldType.Text:
+                    return true;
+                case FieldType.Double:
+                    double dbl;
+                    return Double.TryParse((string) value, out dbl);
+                case FieldType.Integer:
+                    int i;
+                    return Int32.TryParse((string)value, out i);
+                default:
+                    return false;
+            }
+
         }
 
     }

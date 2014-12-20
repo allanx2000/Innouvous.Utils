@@ -11,6 +11,11 @@
             <Setter Property="Margin" Value="3"/>
             <Setter Property="Padding" Value="3"/>
         </Style>
+
+        <Style TargetType="TextBox">
+            <Setter Property="Margin" Value="3"/>
+            <Setter Property="Padding" Value="3"/>
+        </Style>
     </UserControl.Resources>
     
     <Grid>

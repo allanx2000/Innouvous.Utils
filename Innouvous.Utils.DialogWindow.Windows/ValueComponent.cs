@@ -14,10 +14,12 @@ namespace Innouvous.Utils.DialogWindow.Windows
         string ComponentType { get; }
         ComponentArgs Options { get; }
         object Data { get; }
+
+        void SetData(object data);
     }
 
     //Base class for Component objects 
-    public abstract class ValueComponent : UserControl, IValueComponent
+    public abstract class ValueComponent : UserControl, IValueComponent, INotifyPropertyChanged
     {
         private ComponentArgs options;
 
@@ -71,8 +73,25 @@ namespace Innouvous.Utils.DialogWindow.Windows
         {
             if (PropertyChanged != null)
             {
+                if (dataFieldAlias != null && name == "Data")
+                    name = dataFieldAlias;
+
                 PropertyChanged.Invoke(this, new PropertyChangedEventArgs(name));
             }
+        }
+
+
+        public void SetData(object data)
+        {
+            Data = data;
+
+            RaisePropertyChanged("Data");
+        }
+
+        private string dataFieldAlias = null;
+        protected void SetDataFieldAlias(string name)
+        {
+            dataFieldAlias = name;
         }
     }
 }

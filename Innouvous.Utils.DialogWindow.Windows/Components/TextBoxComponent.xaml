@@ -7,5 +7,5 @@
              d:DesignHeight="300" d:DesignWidth="300"
              xmlns:local="clr-namespace:Innouvous.Utils.DialogWindow.Windows"
         >
-    <TextBox Name="ValueTextBox"  Text="{Binding Value}"/>
+    <TextBox Name="ValueTextBox" Text="{Binding Value}"/>
 </local:ValueComponent>

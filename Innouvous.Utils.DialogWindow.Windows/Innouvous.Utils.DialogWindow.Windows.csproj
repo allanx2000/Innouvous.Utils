@@ -56,8 +56,12 @@
   <ItemGroup>
     <Compile Include="ComponentArgs.cs" />
     <Compile Include="ComponentFactory.cs" />
+    <Compile Include="Components\BooleanComponent.cs" />
     <Compile Include="Components\ComboBoxComponent.xaml.cs">
       <DependentUpon>ComboBoxComponent.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Components\DateTimeComponent.xaml.cs">
+      <DependentUpon>DateTimeComponent.xaml</DependentUpon>
     </Compile>
     <Compile Include="Components\PathSelectComponent.xaml.cs">
       <DependentUpon>PathSelectComponent.xaml</DependentUpon>
@@ -74,6 +78,10 @@
     </Compile>
     <Compile Include="ValueComponent.cs" />
     <Page Include="Components\ComboBoxComponent.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Components\DateTimeComponent.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -119,10 +127,6 @@
     <AppDesigner Include="Properties\" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\..\Innouvous.Utils\Innouvous.Utils.Dialogs\Innouvous.Utils.Dialogs.csproj">
-      <Project>{2b0e7f06-edf2-4c54-a3be-bd303186f9cb}</Project>
-      <Name>Innouvous.Utils.Dialogs</Name>
-    </ProjectReference>
     <ProjectReference Include="..\..\Innouvous.Utils\Innouvous.Utils.DialogWindow\Innouvous.Utils.DialogWindow.csproj">
       <Project>{faf335ca-56b5-4770-8e70-4c37d23255f1}</Project>
       <Name>Innouvous.Utils.DialogWindow</Name>
@@ -131,7 +135,12 @@
       <Project>{b90d1bd6-db68-416c-9150-ba4e3c73a3f2}</Project>
       <Name>Innouvous.Utils.MVVM</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Innouvous.Utils.Dialogs\Innouvous.Utils.Dialogs.csproj">
+      <Project>{2b0e7f06-edf2-4c54-a3be-bd303186f9cb}</Project>
+      <Name>Innouvous.Utils.Dialogs</Name>
+    </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
