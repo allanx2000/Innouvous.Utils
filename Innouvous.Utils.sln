@@ -11,7 +11,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innouvous.Utils.NestedDicti
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innouvous.Utils.MVVM", "Innouvous.Utils.MVVM\Innouvous.Utils.MVVM.csproj", "{B90D1BD6-DB68-416C-9150-BA4E3C73A3F2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innouvous.Utils.Data.SQLiteWrapper", "Innouvous.Utils.SQLiteWrapper\Innouvous.Utils.Data.SQLiteWrapper.csproj", "{D10F0471-AE8B-40ED-B91A-529CEBBF6468}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innouvous.Utils.Data.SQLiteWrapper", "Innouvous.Utils.SQLiteWrapper\Innouvous.Utils.Data.SQLiteWrapper.csproj", "{183BD0E1-5F1E-45E3-8BE9-34D9B64A5B99}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innouvous.Utils.Data.SQLiteWrapper.Tests", "Innouvous.Utils.SQLiteWrapper.Tests\Innouvous.Utils.Data.SQLiteWrapper.Tests.csproj", "{9D10A18A-05B2-4834-908D-481640528698}"
 EndProject
@@ -20,10 +20,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innouvous.Utils.Dialogs", "Innouvous.Utils.Dialogs\Innouvous.Utils.Dialogs.csproj", "{2B0E7F06-EDF2-4C54-A3BE-BD303186F9CB}"
 EndProject
 Global
-	GlobalSection(SubversionScc) = preSolution
-		Svn-Managed = True
-		Manager = AnkhSVN - Subversion Support for Visual Studio
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Release|Any CPU = Release|Any CPU
@@ -45,10 +41,10 @@ Global
 		{B90D1BD6-DB68-416C-9150-BA4E3C73A3F2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{B90D1BD6-DB68-416C-9150-BA4E3C73A3F2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{B90D1BD6-DB68-416C-9150-BA4E3C73A3F2}.Release|Any CPU.Build.0 = Release|Any CPU
-		{D10F0471-AE8B-40ED-B91A-529CEBBF6468}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D10F0471-AE8B-40ED-B91A-529CEBBF6468}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D10F0471-AE8B-40ED-B91A-529CEBBF6468}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D10F0471-AE8B-40ED-B91A-529CEBBF6468}.Release|Any CPU.Build.0 = Release|Any CPU
+		{183BD0E1-5F1E-45E3-8BE9-34D9B64A5B99}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{183BD0E1-5F1E-45E3-8BE9-34D9B64A5B99}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{183BD0E1-5F1E-45E3-8BE9-34D9B64A5B99}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{183BD0E1-5F1E-45E3-8BE9-34D9B64A5B99}.Release|Any CPU.Build.0 = Release|Any CPU
 		{9D10A18A-05B2-4834-908D-481640528698}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{9D10A18A-05B2-4834-908D-481640528698}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{9D10A18A-05B2-4834-908D-481640528698}.Release|Any CPU.ActiveCfg = Release|Any CPU
@@ -64,5 +60,9 @@ Global
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(SubversionScc) = preSolution
+		Svn-Managed = True
+		Manager = AnkhSVN - Subversion Support for Visual Studio
 	EndGlobalSection
 EndGlobal
