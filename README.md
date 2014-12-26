@@ -3,12 +3,14 @@ Innouvous.Utils
 
 Various utility classes/assemblies
 
-***Important: Unless noted, NONE of these are guaranteed to be stable and functions change greatly.***
+***Important: Unless noted, NONE of these are guaranteed to be stable. Functions can be change greatly.***
 
 # Innouvous.Utils.Dialogs #
 Helper/Wrapper class for Win32 dialog windows. 
 
 More intuitive Dialogs Factory and some utility functions such as for creating Extension strings.
+
+**Stable**
 
 # Innouvous.Utils.DialogWindow #
 Probably should integrate this into a single generic Utils library.
@@ -16,6 +18,8 @@ Probably should integrate this into a single generic Utils library.
 The project only contains 1 class: NonClosableWindow which basically a window that has the X button disabled.
 
 To close the window, CanClose() must be called first.
+
+**Stable**
 
 # Innouvous.Utils.DialogWindow.Windows #
 A WPF UserControl and framework.
@@ -72,8 +76,12 @@ Factory class for creating common MessageBoxes
 - Show Error Message
 - Confirm Action
 
+**Stable**
+
 # Innouvous.Utils.MVVM #
 Helper class for learning and understanding MVVM from scratch. Currently, all WPF projects use this but eventually would probably move them to an existing framework like PRISM
+
+**Likely Stable**
 
 # Innouvous.Utils.NestedDictionary #
 ***Untested: Haven't found a use for it yet***
@@ -87,8 +95,14 @@ The goal is to not have to keep creating similar Setters for each individual pro
 
 The Dictionary also contains the ToggleButton (basically a RadioButton that looks like a Button; the original implementation though is not mine.)
 
+**By its nature, changes may be possible but not frequent**
+
 # Innouvous.Utils.SQLiteWrapper #
 Wraps the SQLite Library. Probably not that useful but does provide a more familiar ADO-like class to query with. 
 
+**Stable**
+
 # Innouvous.Utils.TimeoutWebClient #
 WebClient that allows setting a timeout value.
+
+**Stable**
