@@ -8,17 +8,17 @@ using System.Windows.Controls;
 
 namespace Innouvous.Utils.DialogWindow.Windows.Components
 {
-    class BooleanComponent : ValueComponent
+    public class BooleanComponent : ValueComponent
     {
-        public const string DONT_WRAP_IN_LABEL = "DontWrap";
-        public BooleanComponent(ComponentArgs options) : base(options)
+
+        public BooleanComponent(ComponentArgs options, bool dontWrapInLabel = false) : base(options)
         {
-            Initialize();
+            Initialize(dontWrapInLabel);
         }
 
         
         private CheckBox box;
-        private void Initialize()
+        private void Initialize(bool dontWrapInLabel)
         {
             box = new CheckBox();
             
@@ -26,8 +26,8 @@ namespace Innouvous.Utils.DialogWindow.Windows.Components
 
             box.Checked += box_Checked;
 
-            var dont_wrap = Options.GetCustomParameter(DONT_WRAP_IN_LABEL);
-            if (dont_wrap is bool && (bool)dont_wrap == true)
+            var dont_wrap = dontWrapInLabel;
+            if (dontWrapInLabel)
                 this.Content = box;
             else
             {

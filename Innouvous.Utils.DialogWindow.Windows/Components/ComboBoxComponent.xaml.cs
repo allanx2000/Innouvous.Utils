@@ -25,18 +25,18 @@ namespace Innouvous.Utils.DialogWindow.Windows.Components
         public const string DisplayMemberPath = "DisplayMemberPath";
 
 
-        public ComboBoxComponent(ComponentArgs options) : base(options)
+        public ComboBoxComponent(ComponentArgs options, List<object> values, string displayMemberPath = null) : base(options)
         {
-            vm = new ComboBoxViewModel((List<object>) options.GetCustomParameter(Values));
+            vm = new ComboBoxViewModel(values);
             vm.PropertyChanged += vm_PropertyChanged;
 
             InitializeComponent();
 
             this.DataContext = vm;
 
-            if (options.GetCustomParameter(DisplayMemberPath) != null)
+            if (displayMemberPath != null)
             {
-                Box.DisplayMemberPath = (string) options.GetCustomParameter(DisplayMemberPath);
+                Box.DisplayMemberPath = displayMemberPath;
             }  
            
         }

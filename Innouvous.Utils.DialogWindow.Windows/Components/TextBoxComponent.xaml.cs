@@ -22,10 +22,6 @@ namespace Innouvous.Utils.DialogWindow.Windows.Components
             Integer,
             Double
         }
-
-
-        public const string MAX_LENGTH = "MaxLength";
-        public const string FIELD_TYPE = "FieldType";
         
         private FieldType type = FieldType.Text;
 
@@ -63,7 +59,7 @@ namespace Innouvous.Utils.DialogWindow.Windows.Components
         }
 
 
-        public TextBoxComponent(ComponentArgs args)
+        public TextBoxComponent(ComponentArgs args, FieldType type = FieldType.Text, int? maxLength = null)
             : base(args)
         {
             this.DataContext = this;
@@ -71,7 +67,6 @@ namespace Innouvous.Utils.DialogWindow.Windows.Components
             InitializeComponent();
 
             //Max Length
-            var maxLength = args.GetCustomParameter(MAX_LENGTH);
             if (maxLength != null)
             {
                 int l = (int)maxLength;
@@ -79,11 +74,7 @@ namespace Innouvous.Utils.DialogWindow.Windows.Components
                 CalculateAndSetTextBoxSize(l);
             }
 
-            //Field Type
-            var type = args.GetCustomParameter(FIELD_TYPE);
-
-            if (type != null)
-                this.type = (FieldType)type;
+            this.type = type;
 
             //Set Data Field Name
             base.SetDataFieldAlias("Value");
@@ -105,7 +96,7 @@ namespace Innouvous.Utils.DialogWindow.Windows.Components
                     return true;
                 case FieldType.Double:
                     double dbl;
-                    return Double.TryParse((string) value, out dbl);
+                    return Double.TryParse((string)value, out dbl);
                 case FieldType.Integer:
                     int i;
                     return Int32.TryParse((string)value, out i);

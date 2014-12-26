@@ -48,11 +48,11 @@ namespace Innouvous.Utils.DialogWindow.Windows
 
         #region Data Input
         
-        public List<ComponentArgs> Fields { get; private set; }
+        public List<ValueComponent> Fields { get; private set; }
         public string InstructionsLabel { get; set; }
         public bool BoldLabels { get; set; }
 
-        public static DialogControlOptions SetDataInputOptions(List<ComponentArgs> fields, string instructions = null)
+        public static DialogControlOptions SetDataInputOptions(List<ValueComponent> fields, string instructions = null)
         {
             var opts = new DialogControlOptions()
             {   InstructionsLabel = instructions,

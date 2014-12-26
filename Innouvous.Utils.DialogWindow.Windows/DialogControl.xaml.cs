@@ -45,12 +45,12 @@ namespace Innouvous.Utils.DialogWindow.Windows
 
                     int rowCounter = -1;
                     //Add the Rows
-                    foreach (ComponentArgs field in options.Fields)
+                    foreach (ValueComponent c in options.Fields)
                     {
                         ContentGrid.RowDefinitions.Add(new RowDefinition() { Height = GridLength.Auto });
                         rowCounter++;
 
-                        Label nameLabel = new Label() { Content = field.DisplayName};
+                        Label nameLabel = new Label() { Content = c.DisplayName};
                         nameLabel.SetValue(Grid.RowProperty, rowCounter);
                         nameLabel.SetValue(Grid.ColumnProperty, 0);
 
@@ -59,12 +59,12 @@ namespace Innouvous.Utils.DialogWindow.Windows
                             nameLabel.FontWeight = FontWeights.Bold;
                         }
 
-                        UserControl component;
-
+                        UserControl component = c;
+/*
                         if (field.CustomComponent == null)
                             component = ComponentFactory.MakeComponent(field) as UserControl;
-                        else
-                            component = field.CustomComponent;
+                        else*/
+                        //component = field.Component.Invoke();
 
                         component.SetValue(Grid.RowProperty, rowCounter);
                         component.SetValue(Grid.ColumnProperty, 1);

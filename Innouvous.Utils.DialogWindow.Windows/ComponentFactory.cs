@@ -10,7 +10,7 @@ namespace Innouvous.Utils.DialogWindow.Windows
     /// <summary>
     /// Creates Components for the DialogControl
     /// </summary>
-    public class ComponentFactory
+    /*public class ComponentFactory
     {
         public enum Components
         {
@@ -54,5 +54,5 @@ namespace Innouvous.Utils.DialogWindow.Windows
 
             return component;
         }
-    }
+    }*/
 }

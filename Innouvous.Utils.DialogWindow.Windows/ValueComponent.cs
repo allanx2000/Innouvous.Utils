@@ -11,7 +11,7 @@ namespace Innouvous.Utils.DialogWindow.Windows
     {
         string FieldName { get; }
         string DisplayName { get; }
-        string ComponentType { get; }
+        //string ComponentType { get; }
         ComponentArgs Options { get; }
         object Data { get; }
 
@@ -22,8 +22,9 @@ namespace Innouvous.Utils.DialogWindow.Windows
     public abstract class ValueComponent : UserControl, IValueComponent, INotifyPropertyChanged
     {
         private ComponentArgs options;
+        
 
-        public ValueComponent(ComponentArgs options)
+        protected ValueComponent(ComponentArgs options)
         {
             this.options = options;
             this.Data = options.InitialData;
@@ -45,13 +46,13 @@ namespace Innouvous.Utils.DialogWindow.Windows
             }
         }
 
-        public string ComponentType
+        /*public string ComponentType
         {
             get
             {
                 return options.ComponentType.ToString();
             }
-        }
+        }*/
 
         public ComponentArgs Options
         {

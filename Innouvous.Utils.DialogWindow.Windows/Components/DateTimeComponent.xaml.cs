@@ -24,11 +24,11 @@ namespace Innouvous.Utils.DialogWindow.Windows.Components
 
         private string dateTimeFormat;
 
-        public DateTimeComponent(ComponentArgs options) : base(options)
+        public DateTimeComponent(ComponentArgs options, string dateTimeFormat) : base(options)
         {
             InitializeComponent();
 
-            dateTimeFormat = (string) options.GetCustomParameter(DateTimeFormat);
+            this.dateTimeFormat = dateTimeFormat;
         }
 
         private void TimeTextBox_LostFocus(object sender, RoutedEventArgs e)

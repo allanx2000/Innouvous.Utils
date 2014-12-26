@@ -10,7 +10,7 @@ namespace Innouvous.Utils.DialogWindow.Windows
     /// </summary>
     public struct ComponentArgs
     {
-        public ValueComponent CustomComponent { get; set; }
+        public Func<ValueComponent> Component { get; set; }
 
         /// <summary>
         /// Initial value the component should have. User must ensure the object is compatible with the component
@@ -20,7 +20,7 @@ namespace Innouvous.Utils.DialogWindow.Windows
         /// <summary>
         /// Type of the component, used by ComponentFactory to return the correct ValueComponent
         /// </summary>
-        public ComponentFactory.Components ComponentType { get; set; }
+        //public ComponentFactory.Components ComponentType { get; set; }
 
         /// <summary>
         /// Name of the field as returned in the results dictionary
@@ -38,7 +38,7 @@ namespace Innouvous.Utils.DialogWindow.Windows
         /// 
         /// i.e. TextboxComponent.MAX_LENGTH
         /// </summary>
-        public Dictionary<string, object> CustomParameters { get; set; }
+        //public Dictionary<string, object> CustomParameters { get; set; }
 
         /// <summary>
         /// Returns the value of the parameter, or null if not found. 
@@ -46,11 +46,11 @@ namespace Innouvous.Utils.DialogWindow.Windows
         /// </summary>
         /// <param name="key"></param>
         /// <returns>Value or null</returns>
-        public object GetCustomParameter(string key)
+        /*public object GetCustomParameter(string key)
         {
             if (CustomParameters != null && CustomParameters.ContainsKey(key))
                 return CustomParameters[key];
             else return null;
-        }
+        }*/
     }
 }
