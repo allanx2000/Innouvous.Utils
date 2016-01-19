@@ -41,7 +41,7 @@ namespace Innouvous.Utils.DialogWindow.Windows
 
                     //Add Column
                     ContentGrid.ColumnDefinitions.Add(new ColumnDefinition(){Width= GridLength.Auto});
-                    ContentGrid.ColumnDefinitions.Add(new ColumnDefinition(){Width= new GridLength(1, GridUnitType.Star)});
+                    ContentGrid.ColumnDefinitions.Add(new ColumnDefinition(){Width= new GridLength(200)});
 
                     int rowCounter = -1;
                     //Add the Rows
@@ -82,7 +82,9 @@ namespace Innouvous.Utils.DialogWindow.Windows
                         AcceptsReturn = true,
                         AcceptsTab = true,
                         Text = options.TextBoxMessageContents,
-                        IsReadOnly = !options.TextBoxCanEdit
+                        IsReadOnly = !options.TextBoxCanEdit,
+                        HorizontalScrollBarVisibility = ScrollBarVisibility.Auto,
+                        VerticalScrollBarVisibility = ScrollBarVisibility.Auto
                     };
 
                     ContentGrid.Children.Add(message);

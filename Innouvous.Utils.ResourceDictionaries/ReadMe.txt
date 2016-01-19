@@ -18,3 +18,10 @@ ResourceDictionary with basic component stylings:
 	-Margin, Padding = 5
 
 -----------------
+
+Tips:
+
+Modify but maintain existing Styles
+
+<Style TargetType="Label" BasedOn="{StaticResource {x:Type Label}}">
+                    

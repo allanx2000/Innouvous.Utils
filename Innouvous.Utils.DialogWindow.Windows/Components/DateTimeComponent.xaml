@@ -7,3 +7,4 @@
              mc:Ignorable="d" d:DesignWidth="300" Height="40">
     <TextBox Name="TimeTextBox" LostFocus="TimeTextBox_LostFocus"/>
 </local:ValueComponent>
+ 

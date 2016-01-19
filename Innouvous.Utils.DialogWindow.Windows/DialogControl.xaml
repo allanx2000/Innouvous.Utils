@@ -25,7 +25,8 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
         
-        <TextBlock Grid.Row="0" Name="InstructionsTextBlock" TextWrapping="Wrap" />
+        <TextBlock Grid.Row="0" Name="InstructionsTextBlock" 
+                   TextWrapping="Wrap" />
         
         <Grid Grid.Row="1" Name="ContentGrid"/>
         

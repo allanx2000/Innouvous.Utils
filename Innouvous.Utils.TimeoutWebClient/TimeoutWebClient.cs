@@ -130,6 +130,10 @@ namespace Innouvous.Utils
                 else 
                     Thread.Sleep(CheckFrequency * 1000);
             }
+
+            actionThread.Abort();
+            throw new Exception("Client timed out");
+
         }
     }
 }

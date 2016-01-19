@@ -1,17 +1,14 @@
 ﻿using System.ComponentModel;
+using System.Windows.Input;
 
 namespace Innouvous.Utils.MVVM
 {
-    public abstract class ViewModel : INotifyPropertyChanged
+    public abstract class ViewModel : ObservableClass
     {
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        protected void RaisePropertyChanged(string propertyName)
+        
+        protected new void RaisePropertyChanged(string propertyName)
         {
-            if (PropertyChanged != null)
-            {
-                PropertyChanged.Invoke(this, new PropertyChangedEventArgs(propertyName));
-            }
+            base.RaisePropertyChanged(propertyName);
         }
 
         public virtual void RefreshViewModel()

@@ -24,7 +24,10 @@ namespace Innouvous.Utils.DialogWindow.Windows.Components
             
             box.IsChecked = Options.InitialData != null ? (bool)Options.InitialData : false;
 
+            //Need To Handle both
             box.Checked += box_Checked;
+            box.Unchecked += box_Checked;
+
 
             var dont_wrap = dontWrapInLabel;
             if (dontWrapInLabel)

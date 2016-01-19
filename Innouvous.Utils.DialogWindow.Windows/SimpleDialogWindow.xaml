@@ -10,7 +10,7 @@
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
-        <local:DialogControl Grid.Row="0" x:Name="DialogControl" />
+        <local:DialogControl Grid.Row="0" x:Name="DialogControl"/>
         <StackPanel Grid.Row="1" HorizontalAlignment="Center" Orientation="Horizontal">
             <Button Name="SaveButton" Visibility="{Binding SaveButtonVisibility}" Command="{Binding SaveCommand}">Save</Button>
             <Button Name="CloseButton" Content="{Binding CloseText}" Command="{Binding CloseCommand}" />

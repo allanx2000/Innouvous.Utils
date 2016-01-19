@@ -24,7 +24,7 @@ namespace Innouvous.Utils.DialogWindow.Windows.Components
 
         private string dateTimeFormat;
 
-        public DateTimeComponent(ComponentArgs options, string dateTimeFormat) : base(options)
+        public DateTimeComponent(ComponentArgs options, string dateTimeFormat = "mm/d/yyyy hh:MM:ss") : base(options)
         {
             InitializeComponent();
 
