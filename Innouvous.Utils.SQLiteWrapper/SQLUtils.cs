@@ -46,7 +46,7 @@ namespace Innouvous.Utils.Data
             return String.Format(command, args);
         }
 
-        private static string SQLEncode(string arg)
+        public static string SQLEncode(string arg)
         {
             arg = arg.Replace("'", "''");
 

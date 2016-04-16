@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2013
-VisualStudioVersion = 12.0.30501.0
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innouvous.Utils.TimeoutWebClient", "Innouvous.Utils.TimeoutWebClient\Innouvous.Utils.TimeoutWebClient.csproj", "{61980419-7DCD-40BF-B460-ADB29914E909}"
 EndProject
@@ -20,6 +20,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innouvous.Utils.Dialogs", "Innouvous.Utils.Dialogs\Innouvous.Utils.Dialogs.csproj", "{2B0E7F06-EDF2-4C54-A3BE-BD303186F9CB}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innouvous.Utils.DialogWindow", "Innouvous.Utils.DialogWindow\Innouvous.Utils.DialogWindow.csproj", "{FAF335CA-56B5-4770-8E70-4C37D23255F1}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innouvous.Utils.SingleInstance", "Innouvous.Utils.SingleInstance\Innouvous.Utils.SingleInstance.csproj", "{2A6B9C5E-D317-4FA5-8571-FC8C25E1D379}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -63,6 +65,10 @@ Global
 		{FAF335CA-56B5-4770-8E70-4C37D23255F1}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{FAF335CA-56B5-4770-8E70-4C37D23255F1}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{FAF335CA-56B5-4770-8E70-4C37D23255F1}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2A6B9C5E-D317-4FA5-8571-FC8C25E1D379}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2A6B9C5E-D317-4FA5-8571-FC8C25E1D379}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2A6B9C5E-D317-4FA5-8571-FC8C25E1D379}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2A6B9C5E-D317-4FA5-8571-FC8C25E1D379}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
