@@ -40,5 +40,13 @@ namespace Innouvous.Utils.MVVM
         {
             return canExecute.Invoke(parameter);
         }
+
+        public void RaiseCanExecuteChanged()
+        {
+            if (CanExecuteChanged != null)
+            {
+                CanExecuteChanged(this, EventArgs.Empty);
+            }
+        }
     }
 }
