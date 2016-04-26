@@ -2,18 +2,31 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
+
 
 namespace Innouvous.Utils.SingleInstance
 {
     public class Checker
     {
+        [DllImport("User32.dll")]
+        private static extern bool SetForegroundWindow(IntPtr hWnd);
+
         public static bool AlreadyRunning
         {
             get
             {
-                return PriorProcess() != null;
+                var process = PriorProcess();
+                if (process != null)
+                {
+                    SetForegroundWindow(process.MainWindowHandle);
+
+                    return true;
+                }
+                else
+                    return false;
             }
         }
         public static Process PriorProcess()
