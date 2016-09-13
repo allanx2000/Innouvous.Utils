@@ -23,6 +23,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innouvous.Utils.DialogWindo
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innouvous.Utils.SingleInstance", "Innouvous.Utils.SingleInstance\Innouvous.Utils.SingleInstance.csproj", "{2A6B9C5E-D317-4FA5-8571-FC8C25E1D379}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Innouvous.Utils.DataBucket", "Innouvous.Utils.DataBucket\Innouvous.Utils.DataBucket.csproj", "{5E974208-DC22-4417-A97C-A85DD298D488}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -69,6 +71,10 @@ Global
 		{2A6B9C5E-D317-4FA5-8571-FC8C25E1D379}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2A6B9C5E-D317-4FA5-8571-FC8C25E1D379}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2A6B9C5E-D317-4FA5-8571-FC8C25E1D379}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5E974208-DC22-4417-A97C-A85DD298D488}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5E974208-DC22-4417-A97C-A85DD298D488}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5E974208-DC22-4417-A97C-A85DD298D488}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5E974208-DC22-4417-A97C-A85DD298D488}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

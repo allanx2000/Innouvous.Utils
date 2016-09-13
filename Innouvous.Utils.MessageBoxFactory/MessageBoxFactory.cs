@@ -9,6 +9,7 @@ namespace Innouvous.Utils
 {
     public static class MessageBoxFactory
     {
+        
         /// <summary>
         /// Displays an Error MessageBox with a detailed error message
         /// </summary>
@@ -16,7 +17,7 @@ namespace Innouvous.Utils
         /// <param name="title"></param>
         /// <param name="icon"></param>
         /// <returns></returns>
-        public static MessageBoxResult ShowError(Exception e, string title = "Error", MessageBoxImage icon = MessageBoxImage.Error, bool outputInnerExceptions = true)
+        public static MessageBoxResult ShowError(Exception e, string title = "Error", MessageBoxImage icon = MessageBoxImage.Error, bool outputInnerExceptions = true, Window owner = null)
         {
 
             StringBuilder sb = new StringBuilder();
@@ -37,7 +38,7 @@ namespace Innouvous.Utils
 
             string str = sb.ToString();
 
-            return ShowError(str, title, icon);
+            return ShowError(str, title, icon, owner);
         }
 
         private static string GeneratePadding(string padding, int number)
@@ -59,9 +60,12 @@ namespace Innouvous.Utils
         /// <param name="title"></param>
         /// <param name="icon"></param>
         /// <returns></returns>
-        public static MessageBoxResult ShowError(string message, string title = "Error", MessageBoxImage icon = MessageBoxImage.Error)
+        public static MessageBoxResult ShowError(string message, string title = "Error", MessageBoxImage icon = MessageBoxImage.Error, Window owner = null)
         {
-            return MessageBox.Show(message, title, MessageBoxButton.OK, icon);
+            if (owner == null)
+                return MessageBox.Show(message, title, MessageBoxButton.OK, icon);
+            else
+                return MessageBox.Show(owner, message, title, MessageBoxButton.OK, icon);
         }
 
 
@@ -97,6 +101,11 @@ namespace Innouvous.Utils
         public static void ShowInfo(string message, string title)
         {
             var result = MessageBox.Show(message, title, MessageBoxButton.OK, MessageBoxImage.Information);
+        }
+
+        public static void ShowInfo(Window owner, string message, string title)
+        {
+            var result = MessageBox.Show(owner, message, title, MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
     }
