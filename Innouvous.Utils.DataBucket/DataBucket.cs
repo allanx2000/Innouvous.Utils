@@ -24,10 +24,18 @@ namespace Innouvous.Utils.DataBucket
 
         public T Get<T>(string key) //where T : ICollection <--Example of where
         {
-            if (bucket.ContainsKey(key))
-                return (T)bucket[key];
-            else
-                return default(T);
+            try
+            {
+                if (bucket.ContainsKey(key) && bucket[key] != null)
+                    return (T)bucket[key];
+                else
+                    return default(T);
+            }
+            catch (Exception e)
+            {
+                //Seems to happen when object is garbage collected? Collection.Remove
+                return null;
+            }
         }
     }
 }
