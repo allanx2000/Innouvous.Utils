@@ -39,6 +39,11 @@ namespace Innouvous.Utils.Data
             this.filename = filename;
         }
 
+        public SQLiteConnection GetConnection()
+        {
+            return connection;
+        }
+
         /// <summary>
         /// Executes INSERT, UPDATE, DELETE, CREATE TABLE commands
         /// </summary>
@@ -47,7 +52,7 @@ namespace Innouvous.Utils.Data
         {
             SQLiteCommand cmd = connection.CreateCommand();
             cmd.CommandText = sql;
-
+            
             cmd.ExecuteNonQuery();
         }
 

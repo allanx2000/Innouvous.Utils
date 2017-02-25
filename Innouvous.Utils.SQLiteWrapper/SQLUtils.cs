@@ -46,9 +46,42 @@ namespace Innouvous.Utils.Data
             return String.Format(command, args);
         }
 
-        public static string SQLEncode(string arg)
+        public static bool CheckTableExists(string table, SQLiteClient client)
         {
+            try
+            {
+                string cmd = "select * from {0} limit 1";
+                cmd = string.Format(cmd, table);
+                client.ExecuteSelect(cmd);
+
+                return true;
+            }
+            catch (Exception e)
+            {
+                return false;
+            }
+
+        }
+
+        public static bool IsNull(object item)
+        {
+            return item == null || item is DBNull;
+        }
+
+        public static string SQLEncode(string arg, bool returnNULL = false, bool quote = false)
+        {   
+            if (arg == null)
+            {
+                if (returnNULL)
+                    return "NULL";
+                else
+                    return null;
+            }
+
             arg = arg.Replace("'", "''");
+
+            if (quote)
+                arg = "'" + arg + "'";
 
             return arg;
         }
@@ -85,6 +118,12 @@ namespace Innouvous.Utils.Data
             return DateTime.ParseExact(dateTimeString, DateTimeFormat, CultureInfo.InvariantCulture);
         }
 
-
+        public static bool SafeBool(object v, bool nullValue = false)
+        {
+            if (v is bool)
+                return (bool)v;
+            else
+                return nullValue;
+        }
     }
 }
