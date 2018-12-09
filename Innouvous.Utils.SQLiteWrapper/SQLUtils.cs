@@ -48,19 +48,10 @@ namespace Innouvous.Utils.Data
 
         public static bool CheckTableExists(string table, SQLiteClient client)
         {
-            try
-            {
-                string cmd = "select * from {0} limit 1";
-                cmd = string.Format(cmd, table);
-                client.ExecuteSelect(cmd);
+            string cmd = string.Format("SELECT name FROM sqlite_master WHERE type = 'table' AND name = '{0}'", 
+                table);
 
-                return true;
-            }
-            catch (Exception e)
-            {
-                return false;
-            }
-
+            return !SQLUtils.IsNull(client.ExecuteScalar(cmd));
         }
 
         public static bool IsNull(object item)
@@ -68,6 +59,14 @@ namespace Innouvous.Utils.Data
             return item == null || item is DBNull;
         }
 
+        /// <summary>
+        /// Encodes the text for SQL statement
+        /// By default, does not quote the text
+        /// </summary>
+        /// <param name="arg"></param>
+        /// <param name="returnNULL">returns NULL if string is null</param>
+        /// <param name="quote"></param>
+        /// <returns></returns>
         public static string SQLEncode(string arg, bool returnNULL = false, bool quote = false)
         {   
             if (arg == null)

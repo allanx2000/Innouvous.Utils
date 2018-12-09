@@ -34,7 +34,7 @@ namespace Innouvous.Utils.DataBucket
             catch (Exception e)
             {
                 //Seems to happen when object is garbage collected? Collection.Remove
-                return null;
+                return default(T);
             }
         }
     }
